@@ -1,38 +1,389 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: whitesmoke;
+}
+
+.login-page{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top:150px;
+  border: 5px solid #9966cc;
+  border-radius: 25px;
+  width: 40vw;
+  padding: 30px;
+  margin-left: 30vw;
+  background-color: whitesmoke;
+}
+
+.titlebar {
+  background-color: #9966CC;
+  padding: 50px 25px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titlebar h1 {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 24px;
+  border: 2px solid gold;
+  margin-top: -20px;
+  text-align: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid gold;
+}
+
+.menubar {
+  position: absolute;
+  top: 100px;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  color: black;
+  transition: left 0.3s ease-in-out;
+  padding: 20px;
+}
+
+.menubar.open {
+  left: 0;
+}
+
+.menubar ul {
+  list-style: none;
+}
+
+.menubar li {
+  margin: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.menubar li:hover {
+  background-color: #C3ACD0;
+  padding: 10px;
+}
+
+.accountbar {
+  position: absolute;
+  top: 100px;
+  right: -250px;
+  width: 250px;
+  background-color: white;
+  color: black;
+  transition: right 0.3s ease-in-out;
+  padding: 5px;
+}
+
+.accountbar.open {
+  right: 0;
+  margin-right: 20px;
+  border: 2px solid mediumslateblue;
+  border-radius: 10px;
+}
+
+.accountbar ul {
+  list-style: none;
+}
+
+.accountbar li {
+  margin: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.accountbar li:hover {
+  background-color: #C3ACD0;
+}
+
+.side li button {
+  color: white;
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+}
+
+.tag {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem auto;
+  color: #9966CC; 
+  font-family: 'Georgia', serif;
+}
+
+
+.taskbox {
+  color: white;
+  padding: 20px;
+}
+
+.tasks h2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: black;
+}
+
+.task-add {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasktable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.tasktable-container {
+  max-height: 60vh;
+  overflow-y: auto;
+  width: 100%;
+  margin-left: 25%;
+}
+
+.tasktable-container table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px;
+}
+
+table {
+  width: 60%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #9966CC;
+  color: white;
+  font-size: 18px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+td {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.task-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.task span {
+  text-align: center;
+  padding-left: 10px;
+  font-size: 16px;
+  max-height: 50px;
+  overflow-y: auto;
+  word-wrap: break-word;
+  color: black;
+}
+
+.task span.completed {
+  text-decoration: line-through;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.add, .delete {
+  background-color: #9966CC;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+td span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #9966CC;
+  margin-right: 20px;
+}
+
+tr.task-row.completed {
+  background-color: #d3d3d3;
+  text-decoration: line-through;
+}
+
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.app.dark {
+  height: 100vh;
+  background-color: #1a1a1a;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.profile-page, .settings-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-page input, .profile-page input, .settings-page input {
+  padding: 10px;
+  margin: 15px 5px;
+  border-radius: 10px;
+  border: 2px solid #9966CC;
+  text-align: center;
+}
+
+.login-page button, .profile-page button, .settings-page button {
+  margin-top: 10px;
+}
+
+.error-message {
+  background-color: #ffe0e0;
+  color: #d8000c;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #d8000c;
+  border-radius: 4px;
+}
+
+.flash-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center;
+}
+
+.flash-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.flash-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  width: 90%;
+  color: black;
+}
+
+.flash-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash-actions button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.flash-actions .delete {
+  background-color: #9966CC;
+  color: white;
+}
+
+.flash-actions .add {
+  background-color: #9966CC;
+  color: white;
+}
+
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  10% { opacity: 1; transform: translate(-50%, -50%); }
+  90% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -60%); }
 }
